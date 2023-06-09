@@ -1,7 +1,7 @@
 from django.db import models
 from django.shortcuts import reverse
 from accounts.models import Owner,Agent,Guest
-
+from multiupload.fields import MultiMediaField
 
 # Create your models here.
 class Amenity(models.Model):
@@ -12,9 +12,9 @@ class Amenity(models.Model):
 class Apartment(models.Model):
     name= models.CharField(max_length=128)
     slug= models.SlugField(max_length=128)
-    adresse= models.CharField(max_length=128)
+    address= models.CharField(max_length=128)
     description=models.TextField(blank=True)
-    image=models.ImageField(upload_to='apartment',blank=True,null=True)
+    images = MultiMediaField()
     city = models.CharField(max_length=128)
     country = models.CharField(max_length=128)
     bed_rooms= models.IntegerField(default=0)
@@ -38,11 +38,10 @@ class Reservation(models.Model):
     guest=models.ForeignKey(Guest,on_delete=models.CASCADE,null=True)
     apartment=models.ForeignKey(Apartment,on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField()
+    updated_at=models.DateTimeField(blank=True,null=True)
     start_date=models.DateTimeField()
     end_date=models.DateTimeField()
     is_confirmed=models.BooleanField(default=False)
     is_paid=models.BooleanField(default=False)
-
     def __str__(self):
         return f"{self.apartment.name} est loué par {self.guest.username}"

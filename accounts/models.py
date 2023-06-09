@@ -16,5 +16,7 @@ class Owner(User):
     class Meta:
         verbose_name="Owner"
 class Agent(User):
+    slug = models.CharField(max_length=255)
+    description=models.TextField(blank=True,null=True)
     class Meta:
         verbose_name="Agent"

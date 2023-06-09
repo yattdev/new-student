@@ -163,14 +163,8 @@
             <a class="nav-link {% if request.resolver_match.url_name == 'blog' %}active{% endif %}" href="{% url 'blog' 'grid' %}">Blog</a>
           </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item " href="{% url 'property' 'single' %}">Property Single</a>
-              <a class="dropdown-item " href="{% url 'blog' 'single' %}">Blog Single</a>
-              <a class="dropdown-item " href="{% url 'agent' 'grid' %}">Agents Grid</a>
-              <a class="dropdown-item " href="{% url 'agent' 'single' %}">Agent Single</a>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'agent' 'grid' %}" >Agent</a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="{% url 'contact' %}">Contact</a>

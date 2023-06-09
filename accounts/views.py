@@ -1,6 +1,7 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import get_user_model,login,logout,authenticate
 from .models import Agent
+from location.models import Apartment
 # Create your views here.
 User=get_user_model()
 def signup(request):
@@ -32,4 +33,8 @@ def logout_user(request):
     return redirect('index')
 
 def agent(request, variable):
-    return render(request, f"location/agent-{variable}.html",context={'agents':Agent.objects.all()})
+    if variable=="grid":
+        return render(request, f"location/agents-grid.html",context={'agents':Agent.objects.all()})
+    else:
+        agent=get_object_or_404(Agent,slug=variable)
+    return render(request, f"location/agent-single.html",context={'agent':agent,'apartments':Apartment.objects.filter(agent=agent.id)})

@@ -1,0 +1,23 @@
+<div class="{% if request.resolver_match.url_name == 'index' %} carousel-item-c swiper-slide {% else %} col-md-4 {% endif %}">
+    <div class="card-box-b card-shadow news-box">
+      <div class="img-box-b">
+        <img src="{{ post.apartment.image.url }}" alt="" class="img-b img-fluid">
+      </div>
+      <div class="card-overlay">
+        <div class="card-header-b">
+          <div class="card-category-b">
+            <a href="#" class="category-b">House</a>
+          </div>
+          <div class="card-title-b">
+            <h2 class="title-2">
+              <a href="{% url 'blog' post.apartment.slug %}">House is comming
+                <br> new</a>
+            </h2>
+          </div>
+          <div class="card-date">
+            <span class="date-b">{{ post.end_date }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+</div><!-- End carousel item -->
